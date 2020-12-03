@@ -16,7 +16,7 @@ function loadEventListeners() {
 
 function getTasks() {
   let tasks;
-  if(localStorage.getItem('tasks') === null) {
+  if(localStorage.getItem('tasks') === null){
     tasks = [];
   } else {
     tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -39,7 +39,7 @@ function getTasks() {
 }
 
 function addTask(e) {
-    if (taskInput.value === '') {
+    if(taskInput.value === '') {
         alert('Add a task');
     }
 
@@ -61,24 +61,24 @@ function addTask(e) {
     taskInput.value = '';
 
     e.preventDefault();
-};
+}
 
 function storeTaskInLocalStorage(task) {
   let tasks;
-  if(localStorage.getItem('tasks') === null) {
+  if(localStorage.getItem('tasks') === null){
     tasks = [];
   } else {
-    tasks = JSON.parse(localStorage.getItem('taks'));
+    tasks = JSON.parse(localStorage.getItem('tasks'));
   }
 
   tasks.push(task);
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
-};
+}
 
 function removeTask(e) {
-    if (e.target.parentElement.classList.contains('delete-item')) {
-        if (confirm('Are you sure?')) {
+    if(e.target.parentElement.classList.contains('delete-item')) {
+        if(confirm('Are you sure?')) {
             e.target.parentElement.parentElement.remove();
 
             removeTaskFromLocalStorage(e.target.parentElement.parentElement);
@@ -88,23 +88,23 @@ function removeTask(e) {
 
 function removeTaskFromLocalStorage(taskItem) {
   let tasks;
-  if(localStorage.getItem('tasks') === null) {
+  if(localStorage.getItem('tasks') === null){
     tasks = [];
   } else {
-    tasks = JSON.parse(localStorage.getItem('taks'));
+    tasks = JSON.parse(localStorage.getItem('tasks'));
   }
 
   tasks.forEach(function(task, index){
-    if(taskItem.textContent === task) {
-      task.splice(index, 1);
+    if(taskItem.textContent === task){
+      tasks.splice(index, 1);
     }
-  }) ;
+  });
   
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function clearTasks() {
-    while (taskList.firstChild) {
+    while(taskList.firstChild) {
         taskList.removeChild(taskList.firstChild);
     }
 
@@ -118,9 +118,9 @@ function clearTasksFromLocalStorage() {
 function filterTasks(e) {
     const text = e.target.value.toLowerCase();
 
-    document.querySelectorAll('.collection-item').forEach(function (task) {
+    document.querySelectorAll('.collection-item').forEach(function(task){
         const item = task.firstChild.textContent;
-        if (item.toLowerCase().indexOf(text) != -1) {
+        if(item.toLowerCase().indexOf(text) != -1){
             task.style.display = 'block';
         } else {
             task.style.display = 'none';
